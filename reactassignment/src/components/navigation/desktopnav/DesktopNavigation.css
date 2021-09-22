@@ -1,0 +1,7 @@
+.navbar--desktop {
+    background-color: var(--clr-black);
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }

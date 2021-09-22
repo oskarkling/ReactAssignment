@@ -1,0 +1,30 @@
+:root
+{
+    --clr-pink: #FF019A;
+    --clr-lightblue: #00F1FF;
+    --clr-blue: #290CFF;
+    --clr-bluegrey: #0161E8;
+    --clr-purple: #9B00E8;
+    --clr-background: #1b1b1b;
+    --clr-black: #000000;
+    --clr-white: white;
+    --clr-darklightgrey: #303030;
+    --clr-darkgrey: rgba(15, 15, 15, 0.95);
+    
+    font-weight: 400;
+    font-style: normal;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--clr-background);
+  color: var(--clr-lightblue);
+  font-family: "Poppins", sans-serif;
+}
+
+a:link {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+}
