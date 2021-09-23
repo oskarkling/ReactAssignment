@@ -1,13 +1,16 @@
 
 import { Navigation } from './components/navigation/Navigation';
 import { Routes } from './routes/Routes';
-import "./shared/styles/Style.css"
+import "./shared/styles/Style.css";
+import { DogeProvider } from './shared/providers/DogeProvider';
 
 function App() {
   return (
-    <Routes>
-      <Navigation />
-    </Routes>
+    <DogeProvider>
+      <Routes>
+        <Navigation />
+      </Routes>
+    </DogeProvider>
   );
 }
 
