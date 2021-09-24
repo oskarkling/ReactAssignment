@@ -13,6 +13,7 @@ export const Home = () => {
     const [loadingOneDog, setLoadingOneDog] = useState(true);
     const [nrOfDogos, setNrOfDogos] = useState(10);
     const [placeHolderText, setPlaceHolderText] = useState("insert how many dogos");
+    const [notANumber, setNotANumber] = useState(false);
     
     const fetchDog = async () => {
         const dogData = await fetchDogDataFromApi();
@@ -20,9 +21,9 @@ export const Home = () => {
         setLoadingOneDog(false);
     }
 
-    const fetchManyDogs = async () => {
+    const fetchManyDogs = async (dogos) => {
         const dogoArr = [];
-        for(let i = 0; i < nrOfDogos; i++) {
+        for(let i = 0; i < dogos; i++) {
             dogoArr[i] = await fetchDogDataFromApi();
         }
         await setDogeData(dogoArr);
@@ -64,16 +65,26 @@ export const Home = () => {
     const checkIfNr = (input) => {
         if(!isNaN(input))
         {
-            setNrOfDogos(input);
             setLoading(true);
+            fetchManyDogs(input);
+            setNrOfDogos(input);
+            setNotANumber(false);
+
         } else {
-            setPlaceHolderText("enter a number...");
+            setNotANumber(true);
         }
+    }
+
+    const notANumberInput = () => {
+        if(notANumber)
+        return (
+            <p>please enter a number</p>
+        )
     }
     
     useEffect(() => {
         fetchDog();
-        fetchManyDogs();
+        fetchManyDogs(0);
     },[]);
 
     return (
@@ -91,8 +102,10 @@ export const Home = () => {
                 <button onClick={() => fetchDog()}>Fetch a new dog from api</button>
                 <br />
                 {displayOneDog()}
+                <p>Enter number of dogos to show:</p>
                 <input placeholder={placeHolderText} onChange={(event) => checkIfNr(event.target.value)} />
-                <button onClick={() => fetchManyDogs()}>Or Fetch many new dogos</button>
+                {notANumberInput()}
+                <p>Showing {nrOfDogos}</p>
                 <div>
                     {displayManyDogs()}
                 </div>
