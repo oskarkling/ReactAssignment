@@ -11,7 +11,7 @@ export const Home = () => {
     const [dogeData, setDogeData] = useContext(DogeContext);
     const [loading, setLoading] = useState(true);
     const [loadingOneDog, setLoadingOneDog] = useState(true);
-    const [nrOfDogos, setNrOfDogos] = useState(10);
+    const [nrOfDogos, setNrOfDogos] = useState();
     const [placeHolderText, setPlaceHolderText] = useState("insert how many dogos");
     const [notANumber, setNotANumber] = useState(false);
     
@@ -27,6 +27,7 @@ export const Home = () => {
             dogoArr[i] = await fetchDogDataFromApi();
         }
         await setDogeData(dogoArr);
+        setNrOfDogos(dogos);
         setLoading(false);
     }
     
@@ -84,7 +85,7 @@ export const Home = () => {
     
     useEffect(() => {
         fetchDog();
-        fetchManyDogs(0);
+        fetchManyDogs(2);
     },[]);
 
     return (
@@ -105,7 +106,7 @@ export const Home = () => {
                 <p>Enter number of dogos to show:</p>
                 <input placeholder={placeHolderText} onChange={(event) => checkIfNr(event.target.value)} />
                 {notANumberInput()}
-                <p>Showing {nrOfDogos}</p>
+                <p>Showing {nrOfDogos} Dogos!</p>
                 <div>
                     {displayManyDogs()}
                 </div>
