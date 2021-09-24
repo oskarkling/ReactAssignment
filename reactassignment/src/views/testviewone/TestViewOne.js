@@ -10,9 +10,9 @@ export const TestViewOne = () => {
 
     const displayManyDogs = () => {
         return dogeData?.map(dog => (
-        <div>
-            <img src={dog.data.message} />
-        </div>
+        
+            <img src={dog.data.message} height="60" />
+        
         ));
     };
 

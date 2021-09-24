@@ -11,6 +11,8 @@ export const Home = () => {
     const [dogeData, setDogeData] = useContext(DogeContext);
     const [loading, setLoading] = useState(true);
     const [loadingOneDog, setLoadingOneDog] = useState(true);
+    const [nrOfDogos, setNrOfDogos] = useState(10);
+    const [placeHolderText, setPlaceHolderText] = useState("insert how many dogos");
     
     const fetchDog = async () => {
         const dogData = await fetchDogDataFromApi();
@@ -20,7 +22,7 @@ export const Home = () => {
 
     const fetchManyDogs = async () => {
         const dogoArr = [];
-        for(let i = 0; i < 10; i++) {
+        for(let i = 0; i < nrOfDogos; i++) {
             dogoArr[i] = await fetchDogDataFromApi();
         }
         await setDogeData(dogoArr);
@@ -37,9 +39,7 @@ export const Home = () => {
             );
         } else {
             return dogeData?.map(dog => (
-            <div>
-                <img src={dog.data.message} />
-            </div>
+                <img src={dog.data.message} height="200" />
             ));
         }
     };
@@ -55,11 +55,21 @@ export const Home = () => {
         } else {
             return (
             <div>
-                <img src={apiData.data?.message} />
+                <img src={apiData.data?.message}  height="200" />
             </div>
             );
         }
     };
+
+    const checkIfNr = (input) => {
+        if(!isNaN(input))
+        {
+            setNrOfDogos(input);
+            setLoading(true);
+        } else {
+            setPlaceHolderText("enter a number...");
+        }
+    }
     
     useEffect(() => {
         fetchDog();
@@ -81,8 +91,11 @@ export const Home = () => {
                 <button onClick={() => fetchDog()}>Fetch a new dog from api</button>
                 <br />
                 {displayOneDog()}
+                <input placeholder={placeHolderText} onChange={(event) => checkIfNr(event.target.value)} />
                 <button onClick={() => fetchManyDogs()}>Or Fetch many new dogos</button>
-                {displayManyDogs()}
+                <div>
+                    {displayManyDogs()}
+                </div>
             </section>     
         </div>
     )
