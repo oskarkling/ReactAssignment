@@ -89,16 +89,16 @@ export const Home = () => {
     },[]);
 
     return (
-        <div>
-            <section>
+        <div className="middle">
+            
                 <h1>Home view</h1>
                 <br />
                 <p>For sending values between views via the history object state variable go to Test View One -</p>
                 <button onClick={() => history.push(RoutingPaths.testViewOne)}>Go to Test view One</button>
                 <br />
                 <br />
-            </section>
-            <section>
+
+
                 <h3>Dog api below</h3>
                 <button onClick={() => fetchDog()}>Fetch a new dog from api</button>
                 <br />
@@ -110,7 +110,7 @@ export const Home = () => {
                 <div>
                     {displayManyDogs()}
                 </div>
-            </section>     
+    
         </div>
     )
 }

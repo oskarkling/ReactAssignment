@@ -9,7 +9,7 @@ export const TestViewTwo = () => {
     const history = useHistory();
 
     return (
-        <div>
+        <div className="middle">
             <h1>TEST VIEW TWO</h1>
             <h3>Value from test view one: </h3>
             <h1>{location.state}</h1>

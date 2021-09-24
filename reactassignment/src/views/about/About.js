@@ -1,7 +1,7 @@
 export const About = () => {
     return (
-        <div>
-            <h1>about view</h1>
+        <div className="middle">
+            <h1>About view</h1>
             <p>This site is purely for an assignment.</p>
             <br />
             <p>Thus the code is made to meet the requirements of the assignment</p>
